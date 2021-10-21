@@ -10,7 +10,7 @@ public class StringMessage extends Message {
         this.counter = 0;
     }
 
-    public String getMessage() {
+    public String getMessageString() {
         return prefix + message();
     }
 
@@ -25,7 +25,7 @@ public class StringMessage extends Message {
     @Override
     public void countRepetitive(Object message) {
         if (!storage.contains((String) message)) {
-            storage.add(getMessage());
+            storage.add(getMessageString());
             clearCounter();
         }
         message = (String) message;

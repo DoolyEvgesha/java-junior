@@ -8,7 +8,7 @@ public class ObjectMessage extends Message {
         this.message = message;
     }
 
-    public Object getMessage() {
+    public String getMessageString() {
         return message;
     }
 

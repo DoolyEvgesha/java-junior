@@ -8,12 +8,12 @@ public class ArrayIntegerMessage extends Message {
         this.message = message;
     }
 
-    public Integer[] getMessage() {
+    public String getMessageString() {
         return message;
     }
 
     @Override
-    public void countRepetitive() {
+    public void countRepetitive(Object newMessage) {
         for (Integer element : message) {
             storage.add(element.toString());
         }

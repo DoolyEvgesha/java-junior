@@ -5,23 +5,13 @@ import java.util.List;
 
 public abstract class Message {
     protected final String prefix;
-    protected final List<String> storage;
 
     public Message(String prefix) {
         this.prefix = prefix;
-        storage = new ArrayList<>();
     }
 
     public String getPrefix() {
         return prefix;
-    }
-
-    public boolean isNewMessageType(Class<?> c1, Class<?> c2) {
-//        String name1 = c1.getCanonicalName();
-//        String name2 = c2.getCanonicalName();
-//        boolean a = Objects.equals(name1, name2);
-//        return !a;
-        return false;
     }
 
     protected long checkOverflow(long result, int max, int min) {
@@ -60,5 +50,6 @@ public abstract class Message {
         return result;
     }
 
-    abstract void countRepetitive(Object message);
+    public abstract void countRepetitive(Object message);
+    public abstract String getMessageString();
 }

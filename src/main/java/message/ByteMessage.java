@@ -14,7 +14,7 @@ public class ByteMessage extends Message {
         this.message = message;
     }
 
-    public String getMessage() {
+    public String getMessageString() {
         return prefix + sum;
     }
 

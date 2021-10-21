@@ -8,7 +8,8 @@ public class CharMessage extends Message{
         this.message = message;
     }
 
-    public char getMessage() {
+    @Override
+    public String getMessageString() {
         return message;
     }
 

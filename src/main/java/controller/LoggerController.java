@@ -1,27 +1,24 @@
 package controller;
 
 import message.Message;
+import message.MessageCounter;
 import printer.PrinterConsole;
 
 public class LoggerController {
     private final PrinterConsole printerConsole;
+    private MessageCounter messageCounter;
 
     public LoggerController(PrinterConsole printerConsole) {
         this.printerConsole = printerConsole;
+        this.messageCounter = new MessageCounter();
     }
 
     public void process(Message message) {
-        if (buffer.isNewBufferType(buffer.getClass(), this.buffer.getClass())) {
-            printer.print(this.buffer.getBody());
-            this.buffer = buffer;
+        if (!messageCounter.compareFinalMessage(message)) {
+            printerConsole.print(messageCounter.getFinalMessageString());
+            messageCounter.addMessage(message);
         }
-        this.buffer.accumulate(message);
-        try {
-            ArrayList<String> result = this.buffer.getExtraordinaryBody();
-            String[] array = new String[result.size()];
-            printer.print(result.toArray(array));
-        } catch (Exception e) {
-
-        }
+        messageCounter.countRepetitive(message);
+//        printerConsole.print();
     }
 }

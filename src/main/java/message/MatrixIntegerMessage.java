@@ -8,7 +8,7 @@ public class MatrixIntegerMessage extends Message {
         this.message = message;
     }
 
-    public Integer[][] getMessage() {
+    public String getMessageString() {
         return message;
     }
     @Override

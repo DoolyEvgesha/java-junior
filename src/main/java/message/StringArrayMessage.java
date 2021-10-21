@@ -10,7 +10,7 @@ public class StringArrayMessage extends Message{
         this.message = message;
     }
 
-    public String[] getMessage() {
+    public String getMessageString() {
         return message;
     }
 
