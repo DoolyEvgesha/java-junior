@@ -24,7 +24,7 @@ public abstract class Message {
         return result;
     }
 
-    protected int countSum(int externalSum, int income, Integer max, Integer min) {
+    protected int countSum(int externalSum, int income, Integer max, Integer min, List<String> storage) {
         long sum = (long) externalSum + (long) income;
         long result = checkOverflow(sum, max, min);
 
@@ -36,13 +36,13 @@ public abstract class Message {
         return (int) result;
     }
 
-    public List<String> getStorage() {
-        List<String> copy = copyStorageWithPrefixes();
+    public List<String> getStorage(List<String> storage) {
+        List<String> copy = copyStorageWithPrefixes(storage);
         storage.clear();
         return copy;
     }
 
-    private List<String> copyStorageWithPrefixes() {
+    private List<String> copyStorageWithPrefixes(List<String> storage) {
         ArrayList<String> result = new ArrayList<>();
         for (String string : storage) {
             result.add(prefix + string);
@@ -50,6 +50,6 @@ public abstract class Message {
         return result;
     }
 
-    public abstract void countRepetitive(Object message);
-    public abstract String getMessageString();
+    public abstract List<String> accumulate(List<String> storage);
+//    public abstract String getMessageString();
 }

@@ -1,17 +1,19 @@
 package message;
 
-import java.util.ArrayList;
+import printer.PrinterConsole;
+
 import java.util.LinkedList;
 import java.util.List;
 
 public class MessageCounter {
-    private int integerSum = 0;
-    private final List<String> storage;
+    private List<String> storage;
     private List<Message> messages;
+    private final PrinterConsole printer;
 
     public MessageCounter() {
-        this.storage = new ArrayList<>();
+        this.storage = new LinkedList<>();
         this.messages = new LinkedList<>();
+        this.printer = new PrinterConsole();
     }
 
     public List<String> getStorage() {
@@ -38,69 +40,17 @@ public class MessageCounter {
         return getFinalMessage().getClass().getCanonicalName();
     }
 
-    public boolean compareFinalMessage(Message message) {
-        return getFinalMessageType().equals(message.getClass().getCanonicalName());
-    }
-
-    public String getFinalMessageString() {
-        return getFinalMessage().getMessageString();
-    }
-
-//    public void countRepetitive(Message message) {
-//        getFinalMessage().countRepetitive(message);
+//    public boolean compareFinalMessage(Message message) {
+//        return getFinalMessageType().equals(message.getClass().getCanonicalName());
 //    }
 
-    private void accumulateIntegers() {
-        for (IntegerMessage mes: (IntegerMessage[]) messages.stream().filter(m -> m instanceof IntegerMessage).toArray()) {
-
-        }
+    public void printLastMessage() {
+        printer.print(storage.get(storage.size() - 1));
     }
 
-    private void accumulateBytes() {
-        for (IntegerMessage mes: (IntegerMessage[]) messages.stream().filter(m -> m instanceof ByteMessage).toArray()) {
-
-        }
-    }
-
-    private void accumulateArrayIntegers() {
-        for (IntegerMessage mes: (IntegerMessage[]) messages.stream().filter(m -> m instanceof ArrayIntegerMessage).toArray()) {
-
-        }
-    }
-
-    private void accumulateMatrixIntegers() {
-        for (IntegerMessage mes: (IntegerMessage[]) messages.stream().filter(m -> m instanceof MatrixIntegerMessage).toArray()) {
-
-        }
-    }
-
-    private void accumulateStrings() {
-        for (IntegerMessage mes: (IntegerMessage[]) messages.stream().filter(m -> m instanceof StringMessage).toArray()) {
-
-        }
-    }
-
-    private void accumulateStringArrays() {
-        for (IntegerMessage mes: (IntegerMessage[]) messages.stream().filter(m -> m instanceof StringArrayMessage).toArray()) {
-
-        }
-    }
-
-    private void accumulateChars() {
-        for (IntegerMessage mes: (IntegerMessage[]) messages.stream().filter(m -> m instanceof CharMessage).toArray()) {
-
-        }
-    }
-
-    private void accumulateBools() {
-        for (IntegerMessage mes: (IntegerMessage[]) messages.stream().filter(m -> m instanceof BooleanMessage).toArray()) {
-
-        }
-    }
-
-    private void accumulateObjects() {
-        for (IntegerMessage mes: (IntegerMessage[]) messages.stream().filter(m -> m instanceof ObjectMessage).toArray()) {
-
+    public void accumulate() {
+        for (Message mes: messages) {
+            storage = mes.accumulate(storage);
         }
     }
 }

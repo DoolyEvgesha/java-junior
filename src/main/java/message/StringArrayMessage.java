@@ -1,6 +1,7 @@
 package message;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class StringArrayMessage extends Message{
     private final String[] message;
@@ -10,12 +11,9 @@ public class StringArrayMessage extends Message{
         this.message = message;
     }
 
-    public String getMessageString() {
-        return message;
-    }
-
     @Override
-    public void countRepetitive() {
+    public List<String> accumulate(List<String> storage) {
         storage.addAll(Arrays.asList(message));
+        return storage;
     }
 }

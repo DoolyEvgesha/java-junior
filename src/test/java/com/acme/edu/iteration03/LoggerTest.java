@@ -32,7 +32,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 
         //region then
         assertSysoutEquals(
-            "primitives array: {-1, 0, 1}" + sep
+            "primitives array: 0"
         );
         //endregion
     }

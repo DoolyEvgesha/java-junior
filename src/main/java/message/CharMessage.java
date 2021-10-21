@@ -1,5 +1,7 @@
 package message;
 
+import java.util.List;
+
 public class CharMessage extends Message{
     private final Character message;
 
@@ -9,12 +11,8 @@ public class CharMessage extends Message{
     }
 
     @Override
-    public String getMessageString() {
-        return message;
-    }
-
-    @Override
-    public void countRepetitive() {
+    public List<String> accumulate(List<String> storage) {
         storage.add(message.toString());
+        return storage;
     }
 }

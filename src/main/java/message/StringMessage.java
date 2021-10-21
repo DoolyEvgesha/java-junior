@@ -1,5 +1,7 @@
 package message;
 
+import java.util.List;
+
 public class StringMessage extends Message {
     private final String message;
     private int counter;
@@ -23,12 +25,12 @@ public class StringMessage extends Message {
     }
 
     @Override
-    public void countRepetitive(Object message) {
-        if (!storage.contains((String) message)) {
+    public List<String> accumulate(List<String> storage) {
+        if (!storage.contains(message)) {
             storage.add(getMessageString());
             clearCounter();
         }
-        message = (String) message;
         counter++;
+        return storage;
     }
 }

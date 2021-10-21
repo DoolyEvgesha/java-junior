@@ -2,14 +2,12 @@ package com.acme.edu;
 
 import controller.LoggerController;
 import message.*;
-import printer.PrinterConsole;
 
 public class Logger {
     private static LoggerController loggerController;
 
     public Logger() {
-        PrinterConsole printerConsole = new PrinterConsole();
-        loggerController = new LoggerController(printerConsole);
+        loggerController = new LoggerController();
     }
 
     public static void log(int integer) {

@@ -2,23 +2,17 @@ package controller;
 
 import message.Message;
 import message.MessageCounter;
-import printer.PrinterConsole;
 
 public class LoggerController {
-    private final PrinterConsole printerConsole;
-    private MessageCounter messageCounter;
+    private final MessageCounter messageCounter;
 
-    public LoggerController(PrinterConsole printerConsole) {
-        this.printerConsole = printerConsole;
+    public LoggerController() {
         this.messageCounter = new MessageCounter();
     }
 
     public void process(Message message) {
-        if (!messageCounter.compareFinalMessage(message)) {
-            printerConsole.print(messageCounter.getFinalMessageString());
-            messageCounter.addMessage(message);
-        }
-        messageCounter.countRepetitive(message);
-//        printerConsole.print();
+        messageCounter.addMessage(message);
+        messageCounter.accumulate();
+        messageCounter.printLastMessage();
     }
 }

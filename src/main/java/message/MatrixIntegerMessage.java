@@ -1,5 +1,7 @@
 package message;
 
+import java.util.List;
+
 public class MatrixIntegerMessage extends Message {
     private final Integer[][] message;
 
@@ -7,16 +9,13 @@ public class MatrixIntegerMessage extends Message {
         super("primitive: ");
         this.message = message;
     }
-
-    public String getMessageString() {
-        return message;
-    }
     @Override
-    public void countRepetitive() {
+    public List<String> accumulate(List<String> storage) {
         for (Integer[] row : message) {
             for (Integer element : row) {
                 storage.add(element.toString());
             }
         }
+        return storage;
     }
 }
